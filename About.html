@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About| Orzata Andrei 232</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+h2 {font-size: 30px; color:#408080;}
+p {font-size: 16px;padding-bottom:0;}
+
+
+.sidebar {
+  margin:0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  padding: 1px 16px;
+  
+}
+
+div.header {
+  margin-left: 200px;
+  margin-bottom: 40px;
+  padding: 1px 16px;
+  height: 20px;
+}
+div.footer {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 160px;
+  background-color:#d9d9d9;
+}
+
+div:after {
+  position: absolute;
+  width: 10px;
+  height: 25px;
+  top: 0;
+  right: -10px;
+  content:"";
+  background: #222;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="#despre">Despre proiect</a>
+  <a href="#diagrama">Diagrama</a>
+  <a href="#modul">Modul de proiectare</a>
+  <a href="#date">Baza de date</a>
+  <a href="#surse">Surse</a>
+</div>
+
+<div class="header">
+  <h1 style="font-size:42px; font-weight:900;">Rezervare de bilete avion online</h1>
+</div>
+
+<div class="content" id="despre">
+  <h2>Despre proiect</h2>
+  <h3>Scurtă descriere</h3>
+  <p><b>Proiectul meu</b> va consta într-o interfață simplu de utilizat pentru a rezerva bilete de avion.
+  Aceasta va putea fi accestă de două tipuri de utilizatori: user-i și administratori.</p>
+  <p><b>User-ul</b> poate căuta bilete în funcție de preferințe cu ajutorul unui search bar și unui filter.
+  În urma rezervării biletului se va elibera un virtual receipt în care se va confirma și se vor  afla informațiile tranzacției.</p>
+  <p><b>Administratorul</b> va putea accesa direct un form prin care va putea modifica baza de date pentru a adauga 
+  si a corecta anumite greseli ce pot aparea din cauza interventie user-ului. Acessul acestuia îi va fi restricționat, 
+  în anumite situații care vor depinde de consimțămantul utilizatorului a caror date sunt modificate. Orice modificare va întoarce o cerere de confirmare a modificărilor</p>
+  
+</div>
+
+<div class="content" id="diagrama">
+  <h2>Diagrama</h2>
+  <img src="Diag.PNG"></img>
+</div>
+
+<div class="content" id="modul">
+  <h2>Modul de proiectare</h2>
+  <h3>Componente</h3>
+  <p><b>Homepage</b> va întâmpina cel care accesează site-ul printru-un slide de fotografii ce vor tranziționa lent poze cu diverse destinații 
+exotice tipice unei companii turistice și un text care arată sigla companiei inexistete pe care am creat-o împreună cu un mesaj de bun venit pe platformă
+,îmbiind potențialul utilizator să utilizeze serviciul oferit de site. Odată apăsat, hompage-ul va tranziționa către următorul component, un Registration Form</p>
+  <p><b>Login</b> este un Registration Form care va stabili la introducerea datelor in casutele corespunzatoare (restricționate pentru a introduce doar informatia corectă)
+  dacă utilizatorul va accesa platforma drept un user, ori un admin, lasând-ul să opereze spațiile desemnate. Acesta va fi implementat printr-un Server folosind variabilele aferente ale acestuia
+(PHP_AUTH_USER, PHP_AUTH_PW, AUTH_TYPE, etc.)</p>
+  <p><b>Userspace</b> va conține un search bar asemanator imagini de jos, (restrictionat corespunzator pentru a evita redundante si traseuri imposibile) 
+  care va afisa o serie de raspunsuri ce vor putea fi filtrate in functie de pret,timp,nr. de escale etc. dupa preferința user-ului. 
+  În urma alegeri unui bilet, acesta va trebui sa aleaga locul in avion in limita disponibilitati și va trebui sa confirme rezervare,
+  de asemenea i se vor prezenta trei zoboruri alternative in cazul in care va dori sa se razgandeasca. Pe urma,
+  dupa modificarea bazei de date acesta va primi o chitanta virtula care va confirma ca tranzactia avut loc.</p>
+  <img src="Search.PNG" ></img>
+  <p><b>Adminspace</b> este un loc special rezervat pentru admin ce va face printr-o serie de functii accesarea usoara si modificarea datelor din platforma. 
+  Aceste functii vor consta in filtrarea rapida a datelor, accesarea simpla a istoricului actiunilor efectuate pe platforma de catre utilizatori, 
+  abilitatea de a corecta neregularitati, de a adauga si de a sterge in baza de date. Actiunile admin-ului vor avea totuși impuse anumite restricții care vor impiedica 
+proasta functionare a sistemului și nerespectare drepturilor user-ului asupra datelor sale personale inventate. </p>
+
+</div>
+
+<div class="content" id="date">
+  <h2>Baza de date</h2>
+   <p><b>Baza de date</b> o să conțină toate informațiile necesare pentru cumpărarea biletului. 
+   Baza pasagerului conține datele de indentificare precum și datele de acces în platformă ale acestuia (nume complet, email, parola). 
+   Ea se leagă de baza de date a detaliilor zborului prin relația INFO_Ticket care oferă informații adiționale despre statul zborului,
+   dacă este available sau nu, și despre data de plecare. Baza de date a zborului conține toate informațiile despre avion
+   (firma, prețul, timpul de decolare, timpul de aterizare etc) acesta se leagă de a detallior zborului printr-o cheie externă ce reprezintă id-ul calătoriei </p>
+  <img src="Baza.PNG"></img>
+</div>
+
+<div class="content" id="surse">
+  <h2>Surse</h2>
+  <h3>Inspirație design.</h3>
+  <p>https://www.flugo.ro/ro</p>
+  <p>https://www.kiwi.com/ro/</p>
+  <p>https://www.veltravel.ro/</p>
+  <p>https://www.flyblueair.com/ro/ro/</p>
+  <p>https://www.vola.ro/</p>
+  <p><b>Diagrama a fost realizată în </b>https://app.diagrams.net/<p>
+  
+  
+</div>
+
+<div class="footer"></div>
+
+</body>
+</html>
