@@ -6,14 +6,14 @@ id.attr("readonly","readonly");
 $(".btnedit").click( e =>{
     let textvalues = displayData(e);
 
-    let bookname = $("input[name*='book_name']");
-    let bookpublisher = $("input[name*='book_publisher']");
-    let bookprice = $("input[name*='book_price']");
+    let country = $("input[name*='countries']");
+    let region = $("input[name*='regions']");
+    let price = $("input[name*='prices']");
 
     id.val(textvalues[0]);
-    bookname.val(textvalues[1]);
-    bookpublisher.val(textvalues[2]);
-    bookprice.val(textvalues[3].replace("$", ""));
+    country.val(textvalues[1]);
+    region.val(textvalues[2]);
+    price.val(textvalues[3].replace("$", ""));
 });
 
 
