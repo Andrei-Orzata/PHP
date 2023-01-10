@@ -1,5 +1,5 @@
 
-let id = $("input[name*='book_id']")
+let id = $("input[name*='id']")
 id.attr("readonly","readonly");
 
 
