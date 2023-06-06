@@ -1,4 +1,5 @@
-$conn = mysqli_connect("localhost","id17950791_andorzat","p0GNN~ruL*so6kO@","id17950791_easytour");
+<?php
+$conn = mysqli_connect("localhost","id17950791_andorzat","Something123@","id17950791_easytour");
 
 if(!$conn) 
 {
