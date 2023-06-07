@@ -24,6 +24,18 @@ if(isset($_POST['send'])){
       mysqli_query($conn, "INSERT INTO `message`(user_id, name, email, message) VALUES('$user_id', '$name', '$email', '$msg')") or die('query failed');
       $message[] = 'message sent successfully!';
    }
+   
+    $subject = "Contact message";
+    $email_message = "Your Massage: " . $msg;
+    $headers = "From: ".$email;
+    $contact_mail = "orzata.andrei@gmail.com";
+
+    if (mail($contact_mail, $subject, $email_message, $headers)) {
+        $message[] = ' email sent successfully!';
+    } else {
+        $message[] = "Failed to send. Please try again.";
+    }
+   
 
 }
 

@@ -91,9 +91,14 @@ if(isset($_POST['add_to_cart'])){
       <a href="shop.php" class="option-btn">load more</a>
    </div>
 
-</section>
 
-
+<center>
+<section>
+    <video autoplay loop muted>
+        <source src="easytour.mp4" type = "video/mp4">
+    </video>
+</section>   
+</center>
 <section class="home-contact">
 
    <div class="content">

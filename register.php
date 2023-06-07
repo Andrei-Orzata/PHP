@@ -9,6 +9,13 @@ if(isset($_POST['submit'])){
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
    $user_type = 'user';
+   
+    if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+        $secretAPIkey = '6LdamuQjAAAAAF7aoJXlzSfEtSuKCPgqgPJe99lg';
+        //reCAPTCHA response verification
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretAPIkey.'&response='.$_POST['g-recaptcha-response']);
+
+
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
@@ -23,7 +30,7 @@ if(isset($_POST['submit'])){
          header('location:login.php');
       }
    }
-
+}
 }
 
 ?>
@@ -31,6 +38,7 @@ if(isset($_POST['submit'])){
     <head>
         <title>Register Form</title>
         <link rel ="stylesheet" type="text/css" href="registerstyle.css">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
         <div class ="registerbox">
@@ -45,6 +53,7 @@ if(isset($_POST['submit'])){
                 <input type="password" name = "password" placeholder="Enter a password" required>
                 <p>Confirm your Password</p>
                 <input type="password" name = "cpassword" placeholder="Enter a password" required>
+                <div class="g-recaptcha" data-sitekey="6LdamuQjAAAAAF7aoJXlzSfEtSuKCPgqgPJe99lg"></div>
                 <input type="submit" name ="submit" value = "Sign Up">
                 <a href="https://orzataandreiphp.000webhostapp.com/login.php">Login-in instead</a><br>
                 <a href="https://orzataandreiphp.000webhostapp.com/">Back to front page</a>

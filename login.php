@@ -4,9 +4,21 @@ include 'config.php';
 session_start();
 
 if(isset($_POST['submit'])){
+    
 
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
+
+
+
+   $notemail = trim($_POST['email']);
+   $email = mysqli_real_escape_string($conn, $notemail);
+   $notpassword = trim($_POST['password']);
+   $pass = mysqli_real_escape_string($conn, md5($notpassword));
+   
+   if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+        $secretAPIkey = '6LdamuQjAAAAAF7aoJXlzSfEtSuKCPgqgPJe99lg';
+        //reCAPTCHA response verification
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretAPIkey.'&response='.$_POST['g-recaptcha-response']);
+
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
@@ -33,7 +45,7 @@ if(isset($_POST['submit'])){
    }else{
       $message[] = 'incorrect email or password!';
    }
-
+}
 }
 
 ?>
@@ -41,6 +53,7 @@ if(isset($_POST['submit'])){
     <head>
         <title>Login Form Design</title>
         <link rel ="stylesheet" type="text/css" href="loginstyle.css">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     
     <?php
@@ -65,6 +78,7 @@ if(isset($message)){
                 <input type="email" name ="email" placeholder ="Enter your email" required>
                 <p>Password</p>
                 <input type="password" name = "password" placeholder="Enter your password" required>
+                <div class="g-recaptcha" data-sitekey="6LdamuQjAAAAAF7aoJXlzSfEtSuKCPgqgPJe99lg"></div>
                 <input type="submit" name ="submit" value = "Login">
                 <a href="https://orzataandreiphp.000webhostapp.com/register.php">Sign up</a><br>
                 <a href="https://orzataandreiphp.000webhostapp.com">Back to front page</a>
